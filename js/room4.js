@@ -56,11 +56,11 @@ function interactOven() {
 }
 
 
-function interactFridge(selection) {
+function interactFridge() {
     window.drawDialogue("--- FRIDGE AHHHHHHHHH", ["Item1", "Item2", "Item3", "Item4", "Item5", "Item6", "Item7"], function() {
         window.waitingForSelection = true;
-        if (selection != undefined) {
-            console.log(selection);
+        if (window.selected) {
+            console.log(window.curretlySelected);
         }
     });
 }
