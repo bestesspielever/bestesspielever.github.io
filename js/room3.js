@@ -27,7 +27,7 @@ function interactGeneral3(playerX, playerWidth) {
 
 
 function interactDoor1() {
-    window.currentRoom--;
+    window.currentRoom++;
 }
 
 
@@ -45,7 +45,7 @@ function interactPunchingBag() {
 
 
 function interactShower() {
-    alert("shower");
+    alert("shower yey");
 }
 
 
