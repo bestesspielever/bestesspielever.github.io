@@ -48,20 +48,20 @@ function interactOven() {
     window.ctx.fillStyle = "blue";
     window.ctx.fillRect(cookingCursor, 990, 10, 50);
     cookingCursorSpeed = Math.floor(Math.random() * 2) + 3;
-    if (cookingCursor == 1410) {
-        cookingCursor = cookingCursor + cookingCursorSpeed
-    }
-    else if (cookingCursor == 1840) {
-        cookingCursor = cookingCursor - cookingCursorSpeed
-    }
-
-
+    cookingCursor = cookingCursor + cookingCursorSpeed
+    if (cookingCursor == 1410)
+        cookingCursorSpeed = -cookingCursorSpeed
+    else if (cookingCursor == 1840)
+        cookingCursorSpeed = -cookingCursorSpeed
 }
 
 
-function interactFridge() {
+function interactFridge(selection) {
     window.drawDialogue("--- FRIDGE AHHHHHHHHH", ["Item1", "Item2", "Item3", "Item4", "Item5", "Item6", "Item7"], function() {
         window.waitingForSelection = true;
+        if (selection != undefined) {
+            console.log(selection);
+        }
     });
 }
 
