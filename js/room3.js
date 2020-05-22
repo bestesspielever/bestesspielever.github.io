@@ -45,7 +45,7 @@ function interactPunchingBag() {
 
 
 function interactShower() {
-    alert("shower yey3");
+    alert("shower yey4");
 }
 
 
