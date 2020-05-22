@@ -27,7 +27,7 @@ function interactGeneral3(playerX, playerWidth) {
 
 
 function interactDoor1() {
-    window.currentRoom++;
+    window.currentRoom--;
 }
 
 
