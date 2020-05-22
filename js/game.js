@@ -1,8 +1,9 @@
-import { loadImages } from "./images.js";
-import { interactGeneral1, room1 } from "./room1.js";
-import { interactGeneral2, room2 } from "./room2.js";
-import { interactGeneral3, room3, interactPunchingBag } from "./room3.js";
-import { interactGeneral4, room4, interactOven } from "./room4.js";
+
+import { loadImages } from "./images.";
+import { interactGeneral1, room1 } from "./room1.";
+import { interactGeneral2, room2 } from "./room2.";
+import { interactGeneral3, room3, interactPunchingBag } from "./room3.";
+import { interactGeneral4, room4, interactOven } from "./room4.";
 
 // keine ahnung wieso aber ohne dem klappt es nicht
 window.interactGeneral1 = interactGeneral1;
@@ -38,6 +39,10 @@ window.dialogueOptions = ["Rock", "Paper", "Scissors"];
 window.dialogueCurrentlySelected = 0;
 window.waitingForResponse = false;
 window.currentMinigame = "";
+window.waitingForSelection = false;
+window.selected = false;
+
+
 function main() {
     canvas = document.querySelector("#game-canvas");
     window.ctx = canvas.getContext("2d");
@@ -50,9 +55,11 @@ function main() {
         movePlayer();
     }, 1000 / FRAMES_PER_SECOND);
 }
+
+
 function refreshScreen() {
   
-    // ich hab verkackt dass es mit 0 beginnt und will es nicht Ã¼berall Ã¤ndern. too bad!
+    // ich hab verkackt dass es mit 0 beginnt und will es nicht überall ändern. too bad!
     drawRoom(rooms[window.currentRoom - 1]);
 
     if (window.showingDialogue == true) {
@@ -94,6 +101,8 @@ function refreshScreen() {
 
     drawStats();
 }
+
+
 function drawRoom(room) {
     for (let item of room) {
         if (item[0] == "stickman") {
@@ -102,12 +111,16 @@ function drawRoom(room) {
         window.ctx.drawImage(images[item[0]], item[1], item[2]);
     }
 }
+
+
 function movePlayer() {
     if ((playerX > 50 && playerDirectionX == -1) || (playerX < 1600 && playerDirectionX == 1)) {
         // 340 (bed)
         playerX += playerDirectionX * PLAYER_SPEED * (60 / FRAMES_PER_SECOND);
     }
 }
+
+
 let keyDown = false;
 document.onkeydown = function(event) {
       switch (event.keyCode) {
@@ -132,7 +145,11 @@ document.onkeydown = function(event) {
             }
             break;
         case 32: // SPACE
-            window["interactGeneral" + window.currentRoom](playerX, playerWidth);
+            if (window.waitingForSelection) {
+                window.selected = true;
+            } else {
+                window["interactGeneral" + window.currentRoom](playerX, playerWidth);
+            }
             break;
         case 87: // W
             if (window.showingDialogue) {
@@ -144,15 +161,21 @@ document.onkeydown = function(event) {
             }
     }
 }
+
+
 document.onkeyup = function(event) {
     if (event.keyCode == 65 || event.keyCode == 68) {
         playerDirectionX = 0;
         keyDown = false;
     }
 }
+
+
 function increaseStat() {
     return
 }
+
+
 function drawDialogue(title, options, func) {
     alert(title, options);
     if (window.showingDialogue) {
@@ -169,6 +192,8 @@ function drawDialogue(title, options, func) {
     }
 }
 window.drawDialogue = drawDialogue;
+
+
 function drawStats() {
     window.ctx.fillStyle = "white";
     window.ctx.fillRect(0, 100, 1920, -100);
@@ -182,4 +207,7 @@ function drawStats() {
     window.ctx.fillText(" " + window.grade, 1200, 60);
     window.ctx.fillText(" " + window.fitness, 1400, 60);
 }
+
+
 main();
+
