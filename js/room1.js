@@ -1,6 +1,6 @@
 //export { interactGeneral1, room1 };
 
-const room1 = [
+window.room1 = [
     ["background", 0, 0],
     ["painting", 200, 100],
     ["bookcase", 850, 414],
@@ -13,7 +13,7 @@ function interactGeneral1(playerX, playerWidth) {
     let playerMiddle = playerX + playerWidth / 2;
     
     if (playerMiddle > 1300 && playerMiddle < 1300 + 196) {
-        interactDoor();
+        window.currentRoom = 2;
     }
     else if (playerMiddle > 850 && playerMiddle < 850 + 228) {
         interactBookshelf();
@@ -22,15 +22,14 @@ function interactGeneral1(playerX, playerWidth) {
         interactBed();
     }
 }
-
-function interactDoor() {
-    window.currentRoom = 2;
-}
+window.interactGeneral1 = interactGeneral1;
        
 function interactBookshelf() {
     alert("BOOKSHELF XFDDDD");
 }
+window.interactBookshelf = interactBookshelf;
 
 function interactBed() {
     alert("BETT OMG IST DAS KRASS");
 }
+window.interactBed = interactBed;

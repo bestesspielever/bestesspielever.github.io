@@ -1,7 +1,4 @@
-
-export { interactGeneral3, room3, interactPunchingBag };
-
-const room3 = [
+window.room3 = [
     ["background", 0, 0],
     ["door", 50, 454],
     ["door", 1500, 454],
@@ -24,12 +21,12 @@ function interactGeneral3(playerX, playerWidth) {
         interactDoor2();
     }
 }
-
+window.interactGeneral3 = interactGeneral3;
 
 function interactDoor1() {
     window.currentRoom--;
 }
-
+window.interactDoor1 = interactDoor1;
 
 window.punchingBagProgress = 0.5;
 function interactPunchingBag() {
@@ -42,14 +39,14 @@ function interactPunchingBag() {
     window.ctx.fillStyle = "red";
     window.ctx.fillRect(1410, 990, 430 * window.punchingBagProgress, 50);
 }
-
+window.interactPunchingBag = interactPunchingBag;
 
 function interactShower() {
     alert("shower yey5");
 }
-
+window.interactShower = interactShower;
 
 function interactDoor2() {
     window.currentRoom++;
 }
-
+window.interactDoor2 = interactDoor2;

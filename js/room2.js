@@ -1,6 +1,4 @@
-export { interactGeneral2, room2 };
-
-const room2 = [
+window.room2 = [
     ["background", 0, 0],
     ["door", 50, 454],
     ["door", 1500, 454],
@@ -24,10 +22,12 @@ function interactGeneral2(playerX, playerWidth) {
     	interactLaptop();
     }
 }
+window.interactGeneral2 = interactGeneral2;
 
 function interactDoor1() {
 	window.currentRoom--;
 }
+window.interactDoor1 = interactDoor1;
 
 function interactTV() {
   	window.drawDialogue("Rock paper scissors", ["Rock", "Paper", "Scissors"], function() {
@@ -48,11 +48,14 @@ function interactTV() {
         }
     });
 }
+window.interactTV = window.interactTV;
 
 function interactLaptop() {
 	alert("laptop");
 }
+window.interactLaptop = interactLaptop;
 
 function interactDoor2() {
 	window.currentRoom++;
 }
+window.interactDoor2 = interactDoor2;

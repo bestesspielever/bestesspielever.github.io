@@ -1,18 +1,5 @@
-
-import { loadImages } from "./images.";
-import { interactGeneral1, room1 } from "./room1.";
-import { interactGeneral2, room2 } from "./room2.";
-import { interactGeneral3, room3, interactPunchingBag } from "./room3.";
-import { interactGeneral4, room4, interactOven } from "./room4.";
-
-// keine ahnung wieso aber ohne dem klappt es nicht
-window.interactGeneral1 = interactGeneral1;
-window.interactGeneral2 = interactGeneral2;
-window.interactGeneral3 = interactGeneral3;
-window.interactGeneral4 = interactGeneral4;
-
 const FRAMES_PER_SECOND = 60;
-const images = loadImages(["background.jpg", "bed.png", "painting.png", "bookcase.png", "door.png", "tv.png", "laptop2.png", "table2.png", "consoles.png", "punching_bag2.png", "oven2.png", "fridge.png", "shower.png", "stickman.png"]);
+const images = window.loadImages(["background.jpg", "bed.png", "painting.png", "bookcase.png", "door.png", "tv.png", "laptop2.png", "table2.png", "consoles.png", "punching_bag2.png", "oven2.png", "fridge.png", "shower.png", "stickman.png"]);
 const playerWidth = 152;
 
 let canvas;
@@ -29,7 +16,7 @@ window.hunger = 50;
 window.grade = 50;
 window.fitness = 50;
 
-const rooms = [room1, room2, room3, room4];
+const rooms = [window.room1, window.room2, window.room3, window.room4];
 window.currentRoom = 1;
 window.PLAYER_SPEED = 15;
 
@@ -59,15 +46,16 @@ function main() {
 
 function refreshScreen() {
   
-    // ich hab verkackt dass es mit 0 beginnt und will es nicht überall ändern. too bad!
+    // ich hab verkackt dass es mit 0 beginnt und will es nicht ï¿½berall ï¿½ndern. too bad!
+    console.log(window.currentRoom - 1)
     drawRoom(rooms[window.currentRoom - 1]);
 
     if (window.showingDialogue == true) {
         window.ctx.fillStyle = "white";
         window.ctx.fillRect(260, 40, 1400, 1000);
       
-          window.ctx.font = "30px Comic Sans MS";
-          window.ctx.fillStyle = "purple";
+        window.ctx.font = "30px Comic Sans MS";
+        window.ctx.fillStyle = "purple";
         window.ctx.fillText(window.dialogueText, 400, 130);
         window.PLAYER_SPEED = 0;
         
@@ -79,7 +67,7 @@ function refreshScreen() {
     if (window.currentMinigame == "punchingGame") {
         window.PLAYER_SPEED = 0;
         if (window.punchingBagProgress < 0) {
-             window.fitness = window.fitness - 5
+            window.fitness = window.fitness - 5
             window.currentMinigame = "";
             window.punchingBagProgress = 0.5;
             window.PLAYER_SPEED = 15;

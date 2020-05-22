@@ -12,3 +12,4 @@ function loadImages(imageNames) {
     }
     return images;
 }
+window.loadImages = loadImages;

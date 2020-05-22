@@ -1,17 +1,16 @@
 
-export { interactGeneral4, room4, interactOven };
+//export { interactGeneral4, room4, interactOven };
 
 let cookingCursor = 1410;
 let cookingCursorSpeed = 1
 
-const room4 = [
+window.room4 = [
     ["background", 0, 0],
     ["door", 50, 454],
     ["fridge", 1000, 400],
     ["oven2", 600, 630],
     ["stickman", -1, 530]
 ]
-
 
 function interactGeneral4(playerX, playerWidth) {
     let playerMiddle = playerX + playerWidth / 2;
@@ -24,13 +23,14 @@ function interactGeneral4(playerX, playerWidth) {
         interactOven();
     }
 }
-
+window.interactGeneral4 = interactGeneral4;
 
 function interactDoor() {
     window.currentRoom--;
 }
+window.interactDoor = interactDoor;
 
-
+let cursorDirection = 1;
 function interactOven() {
     window.currentMinigame = "cooking";
     window.ctx.fillStyle = "black";
@@ -48,13 +48,13 @@ function interactOven() {
     window.ctx.fillStyle = "blue";
     window.ctx.fillRect(cookingCursor, 990, 10, 50);
     cookingCursorSpeed = Math.floor(Math.random() * 2) + 3;
-    cookingCursor = cookingCursor + cookingCursorSpeed
-    if (cookingCursor == 1410)
-        cookingCursorSpeed = -cookingCursorSpeed
-    else if (cookingCursor == 1840)
-        cookingCursorSpeed = -cookingCursorSpeed
+    if (cookingCursor > 1840)
+        cursorDirection = -1
+    else if (cookingCursor < 1410)
+        cursorDirection = 1
+    cookingCursor = cookingCursor + cursorDirection * cookingCursorSpeed
 }
-
+window.interactOven = interactOven;
 
 function interactFridge() {
     window.drawDialogue("--- FRIDGE AHHHHHHHHH", ["Item1", "Item2", "Item3", "Item4", "Item5", "Item6", "Item7"], function() {
@@ -64,4 +64,4 @@ function interactFridge() {
         }
     });
 }
-
+window.interactFridge = interactFridge;
