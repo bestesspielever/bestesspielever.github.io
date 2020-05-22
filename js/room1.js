@@ -1,4 +1,4 @@
-export { interactGeneral1, room1 };
+//export { interactGeneral1, room1 };
 
 const room1 = [
     ["background", 0, 0],

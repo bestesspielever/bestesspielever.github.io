@@ -1,4 +1,4 @@
-export { loadImages };
+//export { loadImages };
 
 function loadImages(imageNames) {
     let imagesPath = "./assets/images/";

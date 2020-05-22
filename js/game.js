@@ -59,7 +59,7 @@ function main() {
 
 function refreshScreen() {
   
-    // ich hab verkackt dass es mit 0 beginnt und will es nicht ï¿½berall ï¿½ndern. too bad!
+    // ich hab verkackt dass es mit 0 beginnt und will es nicht überall ändern. too bad!
     drawRoom(rooms[window.currentRoom - 1]);
 
     if (window.showingDialogue == true) {
