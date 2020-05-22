@@ -1,3 +1,4 @@
+
 export { interactGeneral3, room3, interactPunchingBag };
 
 const room3 = [
@@ -9,11 +10,12 @@ const room3 = [
     ["stickman", -1, 530]
 ]
 
+
 function interactGeneral3(playerX, playerWidth) {
     let playerMiddle = playerX + playerWidth / 2;
     
-  	if (playerMiddle > 50 && playerMiddle < 50 + 196) {
-    	interactDoor1();
+      if (playerMiddle > 50 && playerMiddle < 50 + 196) {
+        interactDoor1();
     } else if (playerMiddle > 1100 && playerMiddle < 1100 + 275) {
         interactPunchingBag();
     } else if (playerMiddle > 500 && playerMiddle < 500 + 280) {
@@ -23,12 +25,13 @@ function interactGeneral3(playerX, playerWidth) {
     }
 }
 
+
 function interactDoor1() {
-	window.currentRoom--;
+    window.currentRoom--;
 }
 
-window.punchingBagProgress = 0.5;
 
+window.punchingBagProgress = 0.5;
 function interactPunchingBag() {
     window.punchingBagProgress -= 0.01;
     window.currentMinigame = "punchingGame";
@@ -40,10 +43,13 @@ function interactPunchingBag() {
     window.ctx.fillRect(1410, 990, 430 * window.punchingBagProgress, 50);
 }
 
+
 function interactShower() {
     alert("shower");
 }
 
+
 function interactDoor2() {
-	window.currentRoom++;
+    window.currentRoom++;
 }
+
