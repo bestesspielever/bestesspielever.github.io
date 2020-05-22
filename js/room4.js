@@ -1,6 +1,8 @@
+
 export { interactGeneral4, room4, interactOven };
 
 let cookingCursor = 1410;
+let cookingCursorSpeed = 1
 
 const room4 = [
     ["background", 0, 0],
@@ -10,10 +12,11 @@ const room4 = [
     ["stickman", -1, 530]
 ]
 
+
 function interactGeneral4(playerX, playerWidth) {
     let playerMiddle = playerX + playerWidth / 2;
     
-  	if (playerMiddle > 50 && playerMiddle < 50 + 196) {
+      if (playerMiddle > 50 && playerMiddle < 50 + 196) {
         interactDoor();
     } else if (playerMiddle > 1000 && playerMiddle < 1000 + 250) {
         interactFridge();
@@ -22,9 +25,11 @@ function interactGeneral4(playerX, playerWidth) {
     }
 }
 
+
 function interactDoor() {
-	window.currentRoom--;
+    window.currentRoom--;
 }
+
 
 function interactOven() {
     window.currentMinigame = "cooking";
@@ -37,15 +42,24 @@ function interactOven() {
     window.ctx.fillStyle = "gray";
     window.ctx.fillRect(1410,990, 150, 50);
     window.ctx.fillRect(1690, 990, 150, 50);
-  	window.ctx.fillStyle = "green";
-  	window.ctx.fillRect(1560, 990, 55, 50);
-  	window.ctx.fillRect(1635, 990, 55, 50);
+    window.ctx.fillStyle = "green";
+    window.ctx.fillRect(1560, 990, 55, 50);
+    window.ctx.fillRect(1635, 990, 55, 50);
     window.ctx.fillStyle = "blue";
     window.ctx.fillRect(cookingCursor, 990, 10, 50);
+    cookingCursorSpeed = Math.floor(Math.random() * 2) + 3;
+    if (cookingCursor = 1410)
+    cookingCursor = cookingCursor + cookingCursorSpeed
+    else if (cookingCursor = 1840)
+    cookingCursor = cookingCursor - cookingCursorSpeed
+
+
 }
+
 
 function interactFridge() {
     window.drawDialogue("--- FRIDGE AHHHHHHHHH", ["Item1", "Item2", "Item3", "Item4", "Item5", "Item6", "Item7"], function() {
-
+        window.waitingForSelection = true;
     });
 }
+

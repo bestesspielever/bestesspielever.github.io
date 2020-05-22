@@ -51,7 +51,6 @@ function main() {
     }, 1000 / FRAMES_PER_SECOND);
 }
 function refreshScreen() {
-      // 😄 🚿 📚 🗲 🍲 🏫
   
     // ich hab verkackt dass es mit 0 beginnt und will es nicht überall ändern. too bad!
     drawRoom(rooms[window.currentRoom - 1]);
