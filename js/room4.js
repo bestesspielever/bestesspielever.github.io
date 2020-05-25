@@ -33,7 +33,7 @@ window.interactDoor = interactDoor;
 let cursorDirection = 1;
 function interactOven() {
     if (!window.currentMinigame) {
-        window.energy -= 2;
+        window.energy = window.changeStat(window.energy, -2);
     }
     window.waitingForSelection = true;
     window.currentMinigame = "cooking";
@@ -58,18 +58,16 @@ function interactOven() {
         cursorDirection = 1
     cookingCursor = cookingCursor + cursorDirection * cookingCursorSpeed
 
-    if (cookingCursor == 1415)
-        cookingCursorSpeed = -cookingCursorSpeed
-    else if (cookingCursor == 1845)
+    if (cookingCursor == 1415 || cookingCursor == 1845)
         cookingCursorSpeed = -cookingCursorSpeed
         
     if (window.selected) {
         if (cookingCursor > 1620 && cookingCursor < 1640)
-            window.hunger = window.hunger + 30
+            window.hunger = window.changeStat(window.hunger, 30);
         else if (cookingCursor > 1565 && cookingCursor < 1695)
-            window.hunger = window.hunger + 15
+            window.hunger = window.changeStat(window.hunger, 15);
         else if (cookingCursor > 1415 && cookingCursor < 1845)
-            window.hunger = window.hunger - 20
+            window.hunger = window.changeStat(window.hunger, -20);
 
         window.currentMinigame = "";
         window.waitingForSelection = false;

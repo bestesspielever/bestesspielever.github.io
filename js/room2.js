@@ -31,22 +31,22 @@ window.interactDoor1 = interactDoor1;
 
 function interactTV() {
     if (!showingDialogue) {
-        window.energy -= 2;
+        window.energy = window.changeStat(window.energy, -2);
     }
   	window.drawDialogue("Rock paper scissors", ["Rock", "Paper", "Scissors"], function() {
     	let randomNumberRPS = Math.floor(Math.random() * 3) + 1;
           
         if (randomNumberRPS == 1) {
-        	// win
-            window.happiness = Math.round(window.happiness + ((window.happiness >= 70) ? (40*5 / window.happiness) : 5));
+            // win
+            window.happiness = window.changeStat(window.happiness, 5, true);
             window.showingDialogue = false;
         } else if (randomNumberRPS == 2) {
         	// tie
-            window.happiness = Math.round(window.happiness + ((window.happiness >= 70) ? (0) : 1));
+            window.happiness = window.changeStat(window.happiness, 1, true);
             window.showingDialogue = false;
         } else if (randomNumberRPS == 3) {
         	// lose
-            window.happiness = window.happiness - 3;
+            window.happiness = window.changeStat(window.happiness, -3);
             window.showingDialogue = false;
         }
     });
@@ -55,8 +55,8 @@ window.interactTV = window.interactTV;
 
 function interactLaptop() {
 	alert("Du gehts in die Konferenz (und passt nicht auf).");
-    window.grade = Math.round(window.grade + ((window.grade >= 70) ? (40*5 / window.grade) : 5));
-    window.energy -= 2;
+    window.grade = window.changeStat(window.grade, 5, true);
+    window.energy = window.changeStat(window.energy, -2);
 }
 window.interactLaptop = interactLaptop;
 

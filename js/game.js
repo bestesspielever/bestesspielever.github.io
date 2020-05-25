@@ -37,7 +37,7 @@ function main() {
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    setInterval(function() {
+    window.mainLoop = setInterval(function() {
         refreshScreen();
         movePlayer();
     }, 1000 / FRAMES_PER_SECOND);
@@ -49,6 +49,16 @@ function main() {
 function refreshScreen() {
     // ich hab verkackt dass es mit 0 beginnt und will es nicht �berall �ndern. too bad!
     drawRoom(rooms[window.currentRoom - 1]);
+
+    if (window.energy == 0) {
+        clearInterval(window.mainLoop);
+        setTimeout(function() {
+            window.ctx.fillStyle = "black";
+            window.ctx.fillRect(0, 0, 1920, 1080);
+            window.ctx.fillStyle = "red";
+            window.ctx.fillText("Du bist gestorben. Haha lol was kannst du eigentlich xDDDDD", 400, 500);
+        }, 17);
+    }
 
     if (window.showingDialogue == true) {
         window.ctx.fillStyle = "white";
@@ -161,10 +171,23 @@ document.onkeyup = function(event) {
 }
 
 
-function increaseStat() {
-    return
-}
+function changeStat(stat, value, dynamic) {
+    output = stat
+    if (dynamic) {
+        output = Math.round(stat + ((stat >= 70) ? (40*value / stat) : value));
+    } else {
+        output = stat + value
+    }
 
+    if (output >= 100) {
+        output = 100
+    } else if (output <= 0) {
+        output = 0
+    }
+
+    return output
+}
+window.changeStat = changeStat;
 
 function drawDialogue(title, options, func) {
     if (window.showingDialogue) {
@@ -183,13 +206,13 @@ function drawStats() {
     window.ctx.fillRect(0, 100, 1920, -100);
     window.ctx.fillStyle = "red";
     window.ctx.font = "40px Comic Sans MS";
-    window.ctx.fillText(" " + window.happiness, 200, 60);
-    window.ctx.fillText(" " + window.hygiene, 400, 60);
-    window.ctx.fillText(" " + window.smartz, 600, 60);
-    window.ctx.fillText(" " + window.energy, 800, 60);
-    window.ctx.fillText(" " + window.hunger, 1000, 60);
-    window.ctx.fillText(" " + window.grade, 1200, 60);
-    window.ctx.fillText(" " + window.fitness, 1400, 60);
+    window.ctx.fillText("😊 " + window.happiness, 200, 60);
+    window.ctx.fillText("🚿 " + window.hygiene, 400, 60);
+    window.ctx.fillText("📚 " + window.smartz, 600, 60);
+    window.ctx.fillText("🗲 " + window.energy, 800, 60);
+    window.ctx.fillText("🍲 " + window.hunger, 1000, 60);
+    window.ctx.fillText("🏫 " + window.grade, 1200, 60);
+    window.ctx.fillText("💪 " + window.fitness, 1400, 60);
 }
 
 function loseEnergy() {
