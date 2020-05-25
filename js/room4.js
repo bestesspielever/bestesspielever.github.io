@@ -32,6 +32,7 @@ window.interactDoor = interactDoor;
 
 let cursorDirection = 1;
 function interactOven() {
+    window.waitingForSelection = true;
     window.currentMinigame = "cooking";
     window.ctx.fillStyle = "black";
     window.ctx.fillRect(1400, 980, 450, 70); 
@@ -48,20 +49,42 @@ function interactOven() {
     window.ctx.fillStyle = "blue";
     window.ctx.fillRect(cookingCursor, 990, 10, 50);
     cookingCursorSpeed = Math.floor(Math.random() * 2) + 3;
-    if (cookingCursor > 1840)
+    if (cookingCursor > 1845)
         cursorDirection = -1
-    else if (cookingCursor < 1410)
+    else if (cookingCursor < 1415)
         cursorDirection = 1
     cookingCursor = cookingCursor + cursorDirection * cookingCursorSpeed
+
+    if (cookingCursor == 1415)
+        cookingCursorSpeed = -cookingCursorSpeed
+    else if (cookingCursor == 1845)
+        cookingCursorSpeed = -cookingCursorSpeed
+        
+    if (window.selected) {
+        if (cookingCursor > 1620 && cookingCursor < 1640)
+            window.hunger = window.hunger + 30
+        else if (cookingCursor > 1565 && cookingCursor < 1695)
+            window.hunger = window.hunger + 15
+        else if (cookingCursor > 1415 && cookingCursor < 1845)
+            window.hunger = window.hunger - 20
+
+        window.currentMinigame = "";
+        window.waitingForSelection = false;
+        cookingCursor = 1410;
+        window.selected = false;
+    }
 }
 window.interactOven = interactOven;
 
 function interactFridge() {
+    alert("work in progress :O");
+    /*
     window.drawDialogue("--- FRIDGE AHHHHHHHHH", ["Item1", "Item2", "Item3", "Item4", "Item5", "Item6", "Item7"], function() {
         window.waitingForSelection = true;
         if (window.selected) {
             alert(window.curretlySelected);
         }
     });
+    */
 }
 window.interactFridge = interactFridge;

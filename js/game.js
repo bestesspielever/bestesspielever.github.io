@@ -47,7 +47,6 @@ function main() {
 function refreshScreen() {
   
     // ich hab verkackt dass es mit 0 beginnt und will es nicht �berall �ndern. too bad!
-    console.log(window.currentRoom - 1)
     drawRoom(rooms[window.currentRoom - 1]);
 
     if (window.showingDialogue == true) {
@@ -62,6 +61,8 @@ function refreshScreen() {
           for (let i = 0; i < window.dialogueOptions.length; i++) {
             window.ctx.fillText(((i == window.dialogueCurrentlySelected) ? (" > ") : "   ") + window.dialogueOptions[i], 400, 200 + 50 * i);
         }
+    } else {
+        window.PLAYER_SPEED = 15;
     }
 
     if (window.currentMinigame == "punchingGame") {
@@ -165,14 +166,8 @@ function increaseStat() {
 
 
 function drawDialogue(title, options, func) {
-    alert(title, options);
     if (window.showingDialogue) {
-        if (window.waitingForResponse) {
-            func();
-            
-            window.waitingForResponse = false;
-        }
-        window.waitingForResponse = true;
+        func();
     } else {
         window.showingDialogue = true;
         window.dialogueOptions = options;
