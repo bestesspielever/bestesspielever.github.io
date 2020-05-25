@@ -25,11 +25,20 @@ function interactGeneral1(playerX, playerWidth) {
 window.interactGeneral1 = interactGeneral1;
        
 function interactBookshelf() {
-    alert("BOOKSHELF XFDDDD");
+    alert("Du ließt das Buch \"Corn in the Corner\". :O");
+    window.smartz = Math.round(window.smartz + ((window.smartz >= 70) ? (40*5 / window.smartz) : 5));
+    window.energy -= 2;
 }
 window.interactBookshelf = interactBookshelf;
 
 function interactBed() {
-    alert("BETT OMG IST DAS KRASS");
+    alert("Du gehst schlafen und träumst über Muhmann.");
+    window.happiness -= 15;
+    window.hygiene -= 20;
+    window.smartz -= 10;
+    window.energy = 100;
+    window.hunger -= 60;
+    window.grade -= 100;
+    window.fitness -= 50;
 }
 window.interactBed = interactBed;

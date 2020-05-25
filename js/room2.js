@@ -31,7 +31,7 @@ window.interactDoor1 = interactDoor1;
 
 function interactTV() {
     if (!showingDialogue) {
-        window.energy -= 1;
+        window.energy -= 2;
     }
   	window.drawDialogue("Rock paper scissors", ["Rock", "Paper", "Scissors"], function() {
     	let randomNumberRPS = Math.floor(Math.random() * 3) + 1;
@@ -54,7 +54,9 @@ function interactTV() {
 window.interactTV = window.interactTV;
 
 function interactLaptop() {
-	alert("laptop");
+	alert("Du gehts in die Konferenz (und passt nicht auf).");
+    window.grade = Math.round(window.grade + ((window.grade >= 70) ? (40*5 / window.grade) : 5));
+    window.energy -= 2;
 }
 window.interactLaptop = interactLaptop;
 

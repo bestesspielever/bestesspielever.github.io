@@ -31,7 +31,7 @@ window.interactDoor1 = interactDoor1;
 window.punchingBagProgress = 0.5;
 function interactPunchingBag() {
     if (!window.currentMinigame) {
-        window.energy -= 1;
+        window.energy -= 2;
     }
     window.punchingBagProgress -= 0.01;
     window.currentMinigame = "punchingGame";
@@ -45,7 +45,10 @@ function interactPunchingBag() {
 window.interactPunchingBag = interactPunchingBag;
 
 function interactShower() {
-    alert("shower yey5");
+    alert("Du stinkst.");
+    window.hygiene = Math.round(window.hygiene + ((window.hygiene >= 70) ? (40*5 / window.hygiene) : 5));
+    window.energy -= 2;
+    alert("jetzt nicht mehr");
 }
 window.interactShower = interactShower;
 
