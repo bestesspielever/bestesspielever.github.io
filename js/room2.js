@@ -30,6 +30,9 @@ function interactDoor1() {
 window.interactDoor1 = interactDoor1;
 
 function interactTV() {
+    if (!showingDialogue) {
+        window.energy -= 1;
+    }
   	window.drawDialogue("Rock paper scissors", ["Rock", "Paper", "Scissors"], function() {
     	let randomNumberRPS = Math.floor(Math.random() * 3) + 1;
           

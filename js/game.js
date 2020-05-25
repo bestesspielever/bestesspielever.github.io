@@ -11,7 +11,7 @@ let punchingBagProgress = 0
 window.happiness = 50;
 window.hygiene = 50;
 window.smartz = 50;
-window.energy = 50;
+window.energy = 100;
 window.hunger = 50;
 window.grade = 50;
 window.fitness = 50;
@@ -41,11 +41,12 @@ function main() {
         refreshScreen();
         movePlayer();
     }, 1000 / FRAMES_PER_SECOND);
+
+    setInterval(loseEnergy, 1000 * 60);
 }
 
 
 function refreshScreen() {
-  
     // ich hab verkackt dass es mit 0 beginnt und will es nicht �berall �ndern. too bad!
     drawRoom(rooms[window.currentRoom - 1]);
 
@@ -191,6 +192,9 @@ function drawStats() {
     window.ctx.fillText(" " + window.fitness, 1400, 60);
 }
 
+function loseEnergy() {
+    window.energy -= 20;
+}
 
 main();
 

@@ -32,6 +32,9 @@ window.interactDoor = interactDoor;
 
 let cursorDirection = 1;
 function interactOven() {
+    if (!window.currentMinigame) {
+        window.energy -= 1;
+    }
     window.waitingForSelection = true;
     window.currentMinigame = "cooking";
     window.ctx.fillStyle = "black";

@@ -30,6 +30,9 @@ window.interactDoor1 = interactDoor1;
 
 window.punchingBagProgress = 0.5;
 function interactPunchingBag() {
+    if (!window.currentMinigame) {
+        window.energy -= 1;
+    }
     window.punchingBagProgress -= 0.01;
     window.currentMinigame = "punchingGame";
     window.ctx.fillStyle = "black";
